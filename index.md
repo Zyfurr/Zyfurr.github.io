@@ -14,49 +14,53 @@ In this lab, you will be reworking labs 1 and 2 using Jupyter Notebooks instead 
 1. Download, flash, and boot your AMD FPGA using AMD PYNQ
 2. Access Jupyter Notebooks
 3. Initialize and synthesize your hardware design
-4. Run Lab 1's Hello World application
+4. Run Lab 1's "Hello World" application
 5. Modify and Run Lab 2's matrix multiply application
 
-## Before You Start
+## AMD PYNQ
 
 {: .info-title}
 > PYNQ INFO: LINUX, JUPYTER, PYTHON INFO
 
 ## Directions
 
-### Flashing FPGA Board with AMD Pynq
+### Flashing Your FPGA Board with AMD PYNQ
 1. Navigate to the URL: [https://www.pynq.io/boards.html](https://www.pynq.io/boards.html)
 2. Retrieve your micro sd card and ensure it is at least 16 GB.
 3. Download the corresponding image from the website. The image should be for the AUP-ZU3 board. For the specific version there should be a sticker near the processors cooler noting whether it is the 8 GB model or 4 GB model.
 4. Once downloaded unzip the folder.
 5. Insert your micro sd card into your sd card reader connected to the computer. Ensure that the sd card is empty.
 6. Navigate to your desired sd card flashing program of choice, for a free option you can use [Balena Etcher](https://etcher.balena.io/). Choose the file within the unzipped folder as your image and flash it to your sd card.
-7. Once flashing is finished connect your FPGA to power using one of the provided USB-C cables. With the other connect it to the DRP I USB 3.0 port and then to your computer, this cable will provide a network of USB-C to communicate from Jupyter Notebooks to your FPGA. Ensure that the power switch is switched to OFF and the boot switch is on SD mode.
-8. Insert the sd card containing the Pynq image into the FPGA and power on the board with the power switch.
+7. Once flashing is finished, connect your FPGA to power using one of the provided USB-C cables. With the other connect it to the DRP I USB 3.0 port and then to your computer, this cable will provide a network over USB-C to communicate from Jupyter Notebooks to your FPGA. Ensure that the power switch is switched to OFF and the boot switch is on SD mode.
+8. Insert the sd card containing the PYNQ image into the FPGA and power on the board with the power switch.
 9. At this point the board will go through a process to boot from the image on the sd card. The FPGA will go through a cycle of LEDs blinking.
     1. The PS LED1 should be blinking in a heart beat pattern.
     2. After ~30 seconds the DONE LED located near the USB 3.0 ports should be lit up solid green. Additionally the white LEDs located near the dip switches at the bottom of the board should light up.
 10. Once these steps are finished the board is ready to be interfaced with!
 
 ### Accessing Jupyter Notebooks
-1. Now that your FPGA board is booted up and running Pynq you can navigate to [http://192.168.3.1/lab](http://192.168.3.1/lab) to open Jupyter Notebooks.
+1. Now that your FPGA board is booted up and running PYNQ you can navigate to [http://192.168.3.1/lab](http://192.168.3.1/lab) to open Jupyter Notebooks.
 2. You shold be prompted for a password if everything is connected correctly. The password is "xilinx".
 3. You should now be greeted with the homepage of Jupyter. You can take some time and read through the different beginner resource folders located in the home directory. Once ready you can move on to the next step.
 
 ### Implementing Your Hardware Design Through Jupyter Notebooks
+## PYNQ Overlay
+
+{: .info-title}
+> PYNQ INFO: LINUX, JUPYTER, PYTHON INFO
 1. To get your hardware running on the FPGA you need to navigate to your Vivado projects home directory. Once there you need to locate your exported bitstream you generated from lab 1. This file should be located at `[project directory]/[project name].runs/impl_1/` and have the file ending .bit.
-2. Once located drag this file into your Jupyter Notebooks home directory
+2. Once located drag this file into your Jupyter Notebooks home directory.
 3. Now you need to grab your Hardware Handoff (HWH) file for your project. This file is used to tell PYNQ specifics about your hardware design like what IPs are being used. This file should be located at `[project directory]/[project name].gen/sources_1/bd/[project name]/hw_handoff/` and have the file ending .hwh.
 4. Once located drag this file into your Jupyter Notebooks home directory as well.
-5. Now that you have all the necessary hardware files to configure your FPGA you need a way to implement them on the board. Navigate to the top of the home dashboard in Jupyter and hit the blue pluss sign. Add a new Python3 notebook and rename it to "Lab4_Init.ipynb".
+5. Now that you have all the necessary hardware files to configure your FPGA you need a way to implement them on the board. Navigate to the top of the home dashboard in Jupyter and hit the blue plus sign. Add a new Python3 notebook and rename it to "lab4_init.ipynb".
 6. In this new notebook you are able to write code and run it in chunks. Click in the open box in the text editor and paste the code provided below.
    ```python
         from pynq import Overlay
         overlay = Overlay("[bitstream file name].bit")
     ```
-7. This simple code snippet is all that is needed to implement your hardware design. Select your code snipped by clicken on the brackets next to it and hit the run button located at the top of the text editor. If you get no error messages you have successfully loaded your hardware design.
+7. This simple code snippet is all that is needed to implement your hardware design. Select your code snipped by clicking on the brackets next to it and hit the run button located at the top of the text editor. If you get no error messages you have successfully loaded your hardware design.
 
-### Running your first application
+### Running Your First Application
 1. Since the image you loaded onto your FPGA on the micro sd card contained a linux implementation you are now able to use a linux command line to compile and run programs on the FPGA. To do this first create a new text file in the home directory named 'Lab4.cpp'.
 2. In this file paste and finish the following code:
     ```c
@@ -73,7 +77,7 @@ In this lab, you will be reworking labs 1 and 2 using Jupyter Notebooks instead 
 5. Congratulations! You've officially run your first program on your FPGA using Jupyter Notebooks.
 
 ### Modifying and Running Your Matrix Multiplication App
-1. To re-implement lab 2 on Jupyter you can use much of the same code as you previously used with one key change. You need to replace the xiltimer.h library with the standard time library provided by C, time.h. The code for this program is provided below. This slightly modified lab 2 app will double the matrix size 5 times and run he desired algorith each time as well as reporting how long the computation took to complete.
+1. To re-implement lab 2 on Jupyter you can use much of the same code as you previously used with one key change. You need to replace the xiltimer.h library with the standard time library provided by C, time.h. The code for this program is provided below. This slightly modified lab 2 app will double the matrix size 5 times and run the desired matrix multiply algorithm each time as well as reporting how long the computation took to complete.
     ```c
     #include <stdio.h>
     #include <stdlib.h>
