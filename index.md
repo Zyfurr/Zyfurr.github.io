@@ -7,7 +7,7 @@ title: Lab 4
 
 ## Description
 
-In this lab, you will be reworking labs 1 and 2 using Jupyter Notebooks instead of Vitis. Jupyter Notebooks is an interactive computing environment that enables users to edit and run code through the use of notebooks. The code within these notebooks can be run in chunks for easy debugging, with the outputs readily available to you. Jupyter notebooks can be used for many things other than coding such as creating plots, interactive widgets, etc. Connection to your AMD FPGA through Jupyter Notebooks provides a more abstracted interface to allow users with less hardware background to program on an FPGA. In this lab you will learn to use this powerful environment to interface with your AMD FPGA from hardware intialization to running your matrix multiply application on the implemented microprocessor. 
+In this lab, you will be reworking labs 1 and 2 using Jupyter notebooks instead of Vitis. Jupyter botebooks is an interactive computing environment that enables users to edit and run code through the use of notebooks. The code within these notebooks can be run in chunks for easy debugging, with the outputs readily available to you. Jupyter notebooks can be used for many things other than coding such as creating plots, interactive widgets, etc. Connection to your AMD FPGA through Jupyter notebooks provides a more abstracted interface to allow users with less hardware background to program on an FPGA. In this lab you will learn to use this powerful environment to interface with your AMD FPGA from hardware intialization to running your matrix multiply application on the implemented microprocessor. 
 
 ## Lab Objectives
 
@@ -20,7 +20,10 @@ In this lab, you will be reworking labs 1 and 2 using Jupyter Notebooks instead 
 ## AMD PYNQ
 
 {: .info-title}
-> PYNQ INFO: LINUX, JUPYTER, PYTHON INFO
+> PYNQ is an open-source framework devloped by AMD that provides an alternative way to interface with FPGAs.
+> PYNQ uses Python, Jupyter notebooks, and Linux to allow for a more streamlined FPGA design and programming experience.
+> This framework is extremely useful for engineers who are not as well versed in the hardware side of FPGA work
+> because it abstracts a lot of details away.
 
 ## Directions
 
@@ -31,27 +34,27 @@ In this lab, you will be reworking labs 1 and 2 using Jupyter Notebooks instead 
 4. Once downloaded unzip the folder.
 5. Insert your micro sd card into your sd card reader connected to the computer. Ensure that the sd card is empty.
 6. Navigate to your desired sd card flashing program of choice, for a free option you can use [Balena Etcher](https://etcher.balena.io/). Choose the file within the unzipped folder as your image and flash it to your sd card.
-7. Once flashing is finished, connect your FPGA to power using one of the provided USB-C cables. With the other connect it to the DRP I USB 3.0 port and then to your computer, this cable will provide a network over USB-C to communicate from Jupyter Notebooks to your FPGA. Ensure that the power switch is switched to OFF and the boot switch is on SD mode.
+7. Once flashing is finished, connect your FPGA to power using one of the provided USB-C cables. With the other connect it to the DRP I USB 3.0 port and then to your computer, this cable will provide a network over USB-C to communicate from Jupyter notebooks to your FPGA. Ensure that the power switch is switched to OFF and the boot switch is on SD mode.
 8. Insert the sd card containing the PYNQ image into the FPGA and power on the board with the power switch.
 9. At this point the board will go through a process to boot from the image on the sd card. The FPGA will go through a cycle of LEDs blinking.
     1. The PS LED1 should be blinking in a heart beat pattern.
     2. After ~30 seconds the DONE LED located near the USB 3.0 ports should be lit up solid green. Additionally the white LEDs located near the dip switches at the bottom of the board should light up.
 10. Once these steps are finished the board is ready to be interfaced with!
 
-### Accessing Jupyter Notebooks
-1. Now that your FPGA board is booted up and running PYNQ you can navigate to [http://192.168.3.1/lab](http://192.168.3.1/lab) to open Jupyter Notebooks.
+### Accessing Jupyter notebooks
+1. Now that your FPGA board is booted up and running PYNQ you can navigate to [http://192.168.3.1/lab](http://192.168.3.1/lab) to open Jupyter notebooks.
 2. You shold be prompted for a password if everything is connected correctly. The password is "xilinx".
 3. You should now be greeted with the homepage of Jupyter. You can take some time and read through the different beginner resource folders located in the home directory. Once ready you can move on to the next step.
 
-### Implementing Your Hardware Design Through Jupyter Notebooks
+### Implementing Your Hardware Design Through Jupyter notebooks
 
 {: .info-title}
-> PYNQ INFO: LINUX, JUPYTER, PYTHON INFO
+> PYNQ Overlay: An overlay in the PYNQ framework is just another way of saying bitstream. When you are defining your overlay you are simply telling PYNQ what file needs to be used to program your FPGA with your hardware design.
 
 1. To get your hardware running on the FPGA you need to navigate to your Vivado projects home directory. Once there you need to locate your exported bitstream you generated from lab 1. This file should be located at `[project directory]/[project name].runs/impl_1/` and have the file ending .bit.
-2. Once located drag this file into your Jupyter Notebooks home directory.
+2. Once located drag this file into your Jupyter notebooks home directory.
 3. Now you need to grab your Hardware Handoff (HWH) file for your project. This file is used to tell PYNQ specifics about your hardware design like what IPs are being used. This file should be located at `[project directory]/[project name].gen/sources_1/bd/[project name]/hw_handoff/` and have the file ending .hwh.
-4. Once located drag this file into your Jupyter Notebooks home directory as well.
+4. Once located drag this file into your Jupyter notebooks home directory as well.
 5. Now that you have all the necessary hardware files to configure your FPGA you need a way to implement them on the board. Navigate to the top of the home dashboard in Jupyter and hit the blue plus sign. Add a new Python3 notebook and rename it to "lab4_init.ipynb".
 6. In this new notebook you are able to write code and run it in chunks. Click in the open box in the text editor and paste the code provided below.
    ```python
@@ -72,9 +75,9 @@ In this lab, you will be reworking labs 1 and 2 using Jupyter Notebooks instead 
        return 0;
      }
     ```
-3. Now add a new terminal in your notebook. You can now interface with the FPGA using a linux command line. Lucky for us this linux build comes with the g++ compiler pre-installed so all we need to do now is run the command `g++ Lab4.cpp`. You might need to navigate to the Jupyter Notebook directory if you aren't already there. This directory is located at `/home/xilinx/jupyter_notebooks`.
+3. Now add a new terminal in your notebook. You can now interface with the FPGA using a linux command line. Lucky for us this linux build comes with the g++ compiler pre-installed so all we need to do now is run the command `g++ Lab4.cpp`. You might need to navigate to the Jupyter notebook directory if you aren't already there. This directory is located at `/home/xilinx/jupyter_notebooks`.
 4. Once our project is done compiling run the command `./a.out`. You should see the output in the terminal "Hello Zynq!".
-5. Congratulations! You've officially run your first program on your FPGA using Jupyter Notebooks.
+5. Congratulations! You've officially run your first program on your FPGA using Jupyter notebooks.
 
 ### Modifying and Running Your Matrix Multiplication App
 1. To re-implement lab 2 on Jupyter you can use much of the same code as you previously used with one key change. You need to replace the xiltimer.h library with the standard time library provided by C, time.h. The code for this program is provided below. This slightly modified lab 2 app will double the matrix size 5 times and run the desired matrix multiply algorithm each time as well as reporting how long the computation took to complete.
@@ -195,13 +198,13 @@ In this lab, you will be reworking labs 1 and 2 using Jupyter Notebooks instead 
         }
     }
     ```
-2. You are now able to test your different matrix multiplication methods using Jupyter Notebooks.
+2. You are now able to test your different matrix multiplication methods using Jupyter notebooks.
 
 
 {: .new-title }
 > Congratulations!
 >
-> You've successfully reworked labs 1 & 2 using Jupyter Notebooks. You now have access to a powerful alternative way of interfacing with your FPGA board.
+> You've successfully reworked labs 1 & 2 using Jupyter notebooks. You now have access to a powerful alternative way of interfacing with your FPGA board.
 
 ## Troubleshooting
 
