@@ -11,7 +11,7 @@ In this lab, you will be reworking labs 1 and 2 using Jupyter Notebooks instead 
 
 ## Lab Objectives
 
-1. Download, flash, and boot your AMD FPGA using AMD Pynq
+1. Download, flash, and boot your AMD FPGA using AMD PYNQ
 2. Access Jupyter Notebooks
 3. Initialize and synthesize your hardware design
 4. Run Lab 1's Hello World application
