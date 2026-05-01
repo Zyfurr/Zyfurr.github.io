@@ -73,7 +73,125 @@ In this lab, you will be reworking labs 1 and 2 using Jupyter Notebooks instead 
 5. Congratulations! You've officially run your first program on your FPGA using Jupyter Notebooks.
 
 ### Modifying and Running Your Matrix Multiplication App
-1. 
+1. To re-implement lab 2 on Jupyter you can use much of the same code as you previously used with one key change. You need to replace the xiltimer.h library with the standard time library provided by C, time.h. The code for this program is provided below. This slightly modified lab 2 app will double the matrix size 5 times and run he desired algorith each time as well as reporting how long the computation took to complete.
+    ```c
+    #include <stdio.h>
+    #include <stdlib.h>
+    #include <string.h>
+    #include <time.h> 
+    #include <iostream>
+    
+    #define IDX(i, j, N) ((i) * (N) + (j))
+    #define TILE_SIZE 32
+    
+    
+    void naive_matrix_multiply(int N, const float* A, const float* B, float* C);
+    
+    void cache_aware_matrix_multiply(int N, const float* A, const float* B, float* C);
+    
+    void tiled_matrix_multiply(int N, const float* A, const float* B, float* C);
+    
+    void fill_matrix(int N, float* buffer);
+    
+    void init_random() {
+        srand(time(NULL));
+    }
+    
+    
+    int main() {
+        int N = 64; // Matrix size
+        init_random();
+   
+    // Benchmark the three implementations here:
+    clock_t c;
+    for (int i = 0; i < 5; ++i) {
+        size_t matrix_size = (size_t)N * (size_t)N;
+        float* A = (float*)malloc(matrix_size * sizeof(float));
+        float* B = (float*)malloc(matrix_size * sizeof(float));
+        float* C = (float*)malloc(matrix_size * sizeof(float));
+        if (A == NULL || B == NULL || C == NULL) {
+            printf("Failed to allocate matrices for N = %d\n", N);
+            free(A);
+            free(B);
+            free(C);
+            return 1;
+        }
+        
+        fill_matrix(N, A);
+        fill_matrix(N, B);
+        memset(C, 0, matrix_size * sizeof(float)); // Initialize C to zero
+        printf("N = %d, Tile_Size = %d\n", N, TILE_SIZE);
+        
+        c = clock();
+        
+        // Call the desired matrix multiplication function here, e.g.:
+        // naive_matrix_multiply(N, A, B, C);
+        // cache_aware_matrix_multiply(N, A, B, C);
+        // tiled_matrix_multiply(N, A, B, C);
+        
+        c = clock() - c;
+        
+        printf("Elapsed time for tiled: %f seconds\n", ((float)c) / CLOCKS_PER_SEC);
+
+        free(A);
+        free(B);
+        free(C);
+        N *= 2;
+    }
+
+    return 0;
+    }
+    
+    void naive_matrix_multiply(int N, const float* A, const float* B, float* C) {
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                C[IDX(i, j, N)] = 0;
+                for (int k = 0; k < N; k++) {
+                    C[IDX(i, j, N)] += A[IDX(i, k, N)] * B[IDX(k, j, N)];
+                }
+            }
+        }
+    }
+    
+    void cache_aware_matrix_multiply(int N, const float* A, const float* B, float* C) {
+        for (int i = 0; i < N; ++i) {
+            for (int k = 0; k < N; ++k) {
+                float r = A[IDX(i, k, N)];
+                for (int j = 0; j < N; ++j) {
+                    C[IDX(i, j, N)] += r * B[IDX(k, j, N)];
+                }
+            }
+        }
+    }
+    
+    void tiled_matrix_multiply(int N, const float* A, const float* B, float* C) {
+        for (int i = 0; i < N; i += TILE_SIZE) {
+            for (int j = 0; j < N; j += TILE_SIZE) {
+                for (int k = 0; k < N; k += TILE_SIZE) {
+                    // Compute the tile C[i:i+TILE_SIZE][j:j+TILE_SIZE]
+                    for (int ii = i; ii < i + TILE_SIZE && ii < N; ++ii) {
+                        for (int kk = k; kk < k + TILE_SIZE && kk < N; ++kk) {
+                            float r = A[IDX(ii, kk, N)];
+                            for (int jj = j; jj < j + TILE_SIZE && jj < N; ++jj) {
+                                C[IDX(ii, jj, N)] += r * B[IDX(kk, jj, N)];
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    void fill_matrix(int N, float* buffer) {
+        init_random();
+        for (int i = 0; i < N; ++i) {
+            for (int j = 0; j < N; ++j) {
+                buffer[IDX(i, j, N)] = rand();
+            }
+        }
+    }
+    ```
+2. You are now able to test your different matrix multiplication methods using Jupyter Notebooks.
 
 
 {: .new-title }
