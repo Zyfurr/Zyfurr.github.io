@@ -29,42 +29,18 @@ In this lab, you will be reworking labs 1 and 2 using Jupyter Notebooks instead 
 ## Directions
 
 ### Flashing FPGA Board with AMD Pynq
-1. **Navigate to the URL: [https://www.pynq.io/boards.html](https://www.pynq.io/boards.html)
+1. Navigate to the URL: [https://www.pynq.io/boards.html](https://www.pynq.io/boards.html)
 2. Retrieve your micro sd card and ensure it is at least 16 GB.
 3. Download the corresponding image from the website. The image should be for the AUP-ZU3 board. For the specific version there should be a sticker near the processors cooler noting whether it is the 8 GB model or 4 GB model.
 4. Once downloaded unzip the folder.
 5. Insert your micro sd card into your sd card reader connected to the computer. Ensure that the sd card is empty.
 6. Navigate to your desired sd card flashing program of choice, for a free option you can use [Balena Etcher](https://etcher.balena.io/). Choose the file within the unzipped folder as your image and flash it to your sd card.
-
-1. **Open Vivado and create a new project.**
-    1. ![Vivado Welcome Screen](./assets/images/vivado_welcome.png)
-    2. Name your project e.g. "lab1" and select a location to save your project. Click "Next".
-    3. In the "Project Type" section, select "RTL Project", "Do not specify sources", and click "Next".
-    4. In the "Default Part" section, select "Boards" and search for "AUP-ZU3 8GB". Select the "AUP-ZU3" board and click "Next", then "Finish". ![Default Part Selection](./assets/images/board_select.png)
-2. **Create a new block design.**
-    1. In the Flow Navigator, click on "Create Block Design" under the "IP Integrator" section. Name your block design e.g. "zynq_soc" and click "OK".
-3. **Add the Zynq UltraScale+ MPSoC IP to your block design.**
-    1. In the block design canvas, click on "Add IP" and search for "Zynq UltraScale+ MPSoC". Select the "Zynq UltraScale+ MPSoC" IP and click "Add IP". ![Add Zynq UltraScale+ MPSoC IP](./assets/images/add_ip.png)
-    2. ![Run Block Automation](./assets/images/block_automation.png)
-    3. You should now see the Zynq UltraScale+ MPSoC IP block in your block design canvas. This block represents the processing system (PS) of the Zynq SoC, which contains the ARM Cortex-A53 processor and various peripherals.
-    4. Use the "Run Block Automation" feature to automatically configure board specific settings for the Zynq UltraScale+ MPSoC IP. Select "Apply Board Preset" and choose "AUP-ZU3-8GB". Click "OK" to apply the preset. This will set up the necessary connections and configurations for the AUP-ZU3 board. 
-4. **Connecting the PL Clock**
-    1. The Zynq UltraScale+ MPSoC has a dedicated clock output that can be used to drive the programmable logic (PL) fabric. This clock is typically connected to the PL fabric through a clock wizard or directly to the PL clock input.
-    2. In your block design, you should see a clock output from the Zynq UltraScale+ MPSoC block labeled "pl\_clk0". This is the clock output from the Zynq PS that can be used to drive the PL fabric logic. We'll use this clock in future labs to drive the logic in the PL fabric.
-    3. For now, use your mouse to click and drag from the "pl\_clk0" output pin (right side) on the Zynq UltraScale+ MPSoC block to the "maxihpm0\_lpd\_aclk" input pin (left) on the Zynq UltraScale+ MPSoC block. This will create a connection between the PS clock output and the PL clock input. This connection is necessary for the PS to be able to drive logic in AXI interfaces between the PS and PL. ![Connect pl_clk0 to maxihpm0_lpd_aclk](./assets/images/connect_clock.png)
-5. **Validate your block design.**
-    1. Click on the "Validate Design" button (checkmark icon) to check for any errors in your block design. If there are any errors, Vivado will provide feedback on what needs to be fixed. Make sure to resolve any errors before proceeding.
-6. **Generate an HDL wrapper for your block design.**
-    1. In the "Sources" panel, right-click on your block design `Design Sources > zynq_soc (zynq_soc.bd)` and select "Create HDL Wrapper".
-    2. Select "Let Vivado manage wrapper and auto-update".
-    3. Click "OK" to close the "Generate HDL Wrapper" window.
-7. **Generate the bitstream:**
-    1. In the "Flow Navigator" panel, click on "Generate Bitstream".
-    2. Click "OK" to generate the bitstream. Watch the progress in the top-right corner of the Vivado window.
-    3. Once the bitstream is generated, you will be asked to "Open Implemented Design", close this window.
-8. **Export your project:**
-    1. Open Vivado and select `File > Export > Export Hardware`.
-    2. Check the box that says "Include bitstream" and click "Finish".
+7. Once flashing is finished connect your FPGA to power using one of the provided USB-C cables. With the other connect it to the DRP I USB 3.0 port and then to your computer. Ensure that the power switch is switched to OFF and the boot switch is on SD mode.
+8. Insert the sd card containing the Pynq image into the FPGA and power on the board with the power switch.
+9. At this point the board will go through a process to boot from the image on the sd card. The FPGA will go through a cycle of LEDs blinking.
+    1. The PS LED1 should be blinking in a heart beat pattern.
+    2. After ~30 seconds the DONE LED located near the USB 3.0 ports should be lit up solid green. Additionally the white LEDs located near the dip switches at the bottom of the board should light up.
+10. Once these steps are finished the board is ready to be interfaced with!
 
 ### Vitis SDK
 
