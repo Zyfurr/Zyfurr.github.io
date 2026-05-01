@@ -6,18 +6,19 @@ grand_parent:  Domain Specific Accelerators
 nav_exclude: true
 ---
 
-# Lab 1: Hello Zynq
+# Lab 4: Labs 1 and 2 Using Jupyter Notebooks
 
 ## Description
 
-In this lab, you will learn how to build a simple System on Chip (SoC) using the Xilinx Vivado design suite. The SoC will be built around the Zynq UltraScale+ MPSoC, which is a powerful System on Chip that contains both an FPGA fabric and a quad-core ARM Cortex-A53 processor. You will learn how to create the minimum hardware design necessary to run a simple "Hello World" application on the ARM processor, and how to use the AMD Vivado and Vitis SDK.
+In this lab, you will be reworking labs 1 and 2 using Jupyter Notebooks instead of Vitis. Jupyter Notebooks is an interactive computing environment that enables users to edit and run code through the use of notebooks. The code within these notebooks can be run in chunks for easy debugging, with the outputs readily available to you. Jupyter notebooks can be used for many things other than coding such as creating plots, interactive widgets, etc. Connection to your AMD FPGA through Jupyter Notebooks provides a more abstracted interface to allow users with less hardware background to program on an FPGA. In this lab you will learn to use this powerful environment to interface with your AMD FPGA from hardware intialization to running your matrix multiply application on the implemented microprocessor. 
 
 ## Lab Objectives
 
-1. Create a simple Zynq Processing System (PS) design in Vivado
-2. Generate the necessary hardware files for software development
-3. Create a simple "Hello Zynq" application in Vitis SDK
-4. Run the application on the ARM processor
+1. Download, flash and boot your AMD FPGA using AMD Pynq
+2. Access Jupyter Notebooks
+3. Initialize and synthesize your hardware design
+4. Run Lab 1's Hello World application
+5. Modify and Run Lab 2's matrix multiply application
 
 ## Before You Start
 
