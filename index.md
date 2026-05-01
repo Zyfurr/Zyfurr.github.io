@@ -19,7 +19,7 @@ In this lab, you will be reworking labs 1 and 2 using Jupyter Notebooks instead 
 
 ## Before You Start
 
-{: .note }
+{: .info-title}
 > Before you open Vivado, you will need to install the AUP-ZU3 board files. These files contain the necessary information for Vivado to recognize the AUP-ZU3 board and its components, such as the FPGA, ARM processor, and peripherals. Without these files, you will not be able to create a hardware design for the AUP-ZU3 board in Vivado.
 > 
 > 1. Download the AUP-ZU3 board files from the following link: [AUP-ZU3 Board Files](https://www.github.com/RealDigitalOrg/aup-zu3-bsp)
@@ -28,7 +28,13 @@ In this lab, you will be reworking labs 1 and 2 using Jupyter Notebooks instead 
 
 ## Directions
 
-### Vivado Design
+### Flashing FPGA Board with AMD Pynq
+1. **Navigate to the URL: [https://www.pynq.io/boards.html](https://www.pynq.io/boards.html)
+2. Retrieve your micro sd card and ensure it is at least 16 GB.
+3. Download the corresponding image from the website. The image should be for the AUP-ZU3 board. For the specific version there should be a sticker near the processors cooler noting whether it is the 8 GB model or 4 GB model.
+4. Once downloaded unzip the folder.
+5. Insert your micro sd card into your sd card reader connected to the computer. Ensure that the sd card is empty.
+6. Navigate to your desired sd card flashing program of choice, for a free option you can use [Balena Etcher](https://etcher.balena.io/). Choose the file within the unzipped folder as your image and flash it to your sd card.
 
 1. **Open Vivado and create a new project.**
     1. ![Vivado Welcome Screen](./assets/images/vivado_welcome.png)
