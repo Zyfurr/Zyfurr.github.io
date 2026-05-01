@@ -3,7 +3,7 @@ layout: page
 title: Lab 1
 ---
 
-# Lab 4: Labs 1 and 2 Using Jupyter Notebooks
+# Lab 4: Reworking Labs 1 and 2 Using Jupyter Notebooks
 
 ## Description
 
