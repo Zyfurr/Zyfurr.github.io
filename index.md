@@ -1,9 +1,6 @@
 ---
 layout: page
 title: Lab 1
-parent: DSA Labs
-grand_parent:  Domain Specific Accelerators
-nav_exclude: true
 ---
 
 # Lab 4: Labs 1 and 2 Using Jupyter Notebooks
