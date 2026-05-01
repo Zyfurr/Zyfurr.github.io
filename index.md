@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Lab 1
+title: Lab 4
 ---
 
 # Lab 4: Reworking Labs 1 and 2 Using Jupyter Notebooks
