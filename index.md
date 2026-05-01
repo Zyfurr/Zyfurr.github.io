@@ -197,9 +197,10 @@ In this lab, you will be reworking labs 1 and 2 using Jupyter Notebooks instead 
 {: .new-title }
 > Congratulations!
 >
-> You've successfully reworked labs 1 & 2 using Jupyter Notebooks. You now have access to an powerful alternative way of interfacing with your FPGA board.
+> You've successfully reworked labs 1 & 2 using Jupyter Notebooks. You now have access to a powerful alternative way of interfacing with your FPGA board.
 
 ## Troubleshooting
 
 If you encounter any issues during this lab, here are some common troubleshooting steps:
-1. 
+1. Empty out your SD card and re-flash it.
+2. If Jupyter Notebooks can't connect to the FPGA it might not be connected to your computer. You can connect it either via USB-C to USB-C cable using the DRP 1 port or via wifi adapter on the same port. 
