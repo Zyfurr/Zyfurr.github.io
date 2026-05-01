@@ -48,6 +48,7 @@ In this lab, you will be reworking labs 1 and 2 using Jupyter Notebooks instead 
 
 {: .info-title}
 > PYNQ INFO: LINUX, JUPYTER, PYTHON INFO
+
 1. To get your hardware running on the FPGA you need to navigate to your Vivado projects home directory. Once there you need to locate your exported bitstream you generated from lab 1. This file should be located at `[project directory]/[project name].runs/impl_1/` and have the file ending .bit.
 2. Once located drag this file into your Jupyter Notebooks home directory.
 3. Now you need to grab your Hardware Handoff (HWH) file for your project. This file is used to tell PYNQ specifics about your hardware design like what IPs are being used. This file should be located at `[project directory]/[project name].gen/sources_1/bd/[project name]/hw_handoff/` and have the file ending .hwh.
