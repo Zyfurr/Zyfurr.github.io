@@ -72,21 +72,16 @@ In this lab, you will be reworking labs 1 and 2 using Jupyter Notebooks instead 
 4. Once our project is done compiling run the command `./a.out`. You should see the output in the terminal "Hello Zynq!".
 5. Congratulations! You've officially run your first program on your FPGA using Jupyter Notebooks.
 
-### Running Your Matrix Multiplication App
+### Modifying and Running Your Matrix Multiplication App
 1. 
 
 
 {: .new-title }
 > Congratulations!
 >
-> You've successfully built and run your first application on the Zynq SoC! In future labs, we will build more complex hardware designs and applications, but this is the foundation for everything we will do in this course.
-
-## Next Steps
-
-In the next lab, we will implement an example compute intensive application on the ARM processor and CPU optimization techniques, and benchmarking the performance of our application. 
+> You've successfully reworked labs 1 & 2 using Jupyter Notebooks. You now have access to an powerful alternative way of interfacing with your FPGA board.
 
 ## Troubleshooting
 
 If you encounter any issues during this lab, here are some common troubleshooting steps:
-1. If your platform is not available in Vitis after you created it, you may have to delete your workspace and start over. My Vitis has been glitching on new workspaces.
-2. If you are having trouble with the serial monitor, make sure you have the correct COM port selected and that your baudrate is set to 115200.
+1. 
