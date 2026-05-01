@@ -22,8 +22,7 @@ In this lab, you will be reworking labs 1 and 2 using Jupyter notebooks instead 
 {: .hint-title}
 > - PYNQ is an open-source framework devloped by AMD that provides an alternative way to interface with FPGAs.
 > - PYNQ uses Python, Jupyter notebooks, and Linux to allow for a more streamlined FPGA design and programming experience.
-> - This framework is extremely useful for engineers who are not as well versed in the hardware side of FPGA work
-> - because it abstracts a lot of details away.
+> - This framework is extremely useful for engineers who are not as well versed in the hardware side of FPGA work because it abstracts a lot of details away.
 
 ## Directions
 
