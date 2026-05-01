@@ -49,7 +49,7 @@ In this lab, you will be reworking labs 1 and 2 using Jupyter notebooks instead 
 ### Implementing Your Hardware Design Through Jupyter notebooks
 
 {: .hint-title}
-> - PYNQ Overlay: An overlay in the PYNQ framework is just another way of saying bitstream. When you are defining your overlay you are simply telling PYNQ what file needs to be used to program your FPGA with your hardware design.
+> - _PYNQ Overlay:_ An overlay in the PYNQ framework is just another way of saying bitstream. When you are defining your overlay you are simply telling PYNQ what file needs to be used to program your FPGA with your hardware design.
 
 1. To get your hardware running on the FPGA you need to navigate to your Vivado projects home directory. Once there you need to locate your exported bitstream you generated from lab 1. This file should be located at `[project directory]/[project name].runs/impl_1/` and have the file ending .bit.
 2. Once located drag this file into your Jupyter notebooks home directory.
