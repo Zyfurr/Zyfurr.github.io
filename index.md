@@ -44,7 +44,6 @@ In this lab, you will be reworking labs 1 and 2 using Jupyter Notebooks instead 
 3. You should now be greeted with the homepage of Jupyter. You can take some time and read through the different beginner resource folders located in the home directory. Once ready you can move on to the next step.
 
 ### Implementing Your Hardware Design Through Jupyter Notebooks
-## PYNQ Overlay
 
 {: .info-title}
 > PYNQ INFO: LINUX, JUPYTER, PYTHON INFO
