@@ -20,11 +20,7 @@ In this lab, you will be reworking labs 1 and 2 using Jupyter Notebooks instead 
 ## Before You Start
 
 {: .info-title}
-> Before you open Vivado, you will need to install the AUP-ZU3 board files. These files contain the necessary information for Vivado to recognize the AUP-ZU3 board and its components, such as the FPGA, ARM processor, and peripherals. Without these files, you will not be able to create a hardware design for the AUP-ZU3 board in Vivado.
-> 
-> 1. Download the AUP-ZU3 board files from the following link: [AUP-ZU3 Board Files](https://www.github.com/RealDigitalOrg/aup-zu3-bsp)
-> 2. Extract the downloaded files to a location on your computer where you can easily access them.
-> 3. Copy the extracted `board_files` folder to the following directory: `{VITIS_INSTALL_ROOT}\Vivado\2025.2\data\boards\`. For example, if you installed Vivado in `C:\Xilinx\Vivado\2025.2`, you would copy the `board_files` folder to `C:\Xilinx\Vivado\2025.2\data\boards\`.
+> PYNQ INFO: LINUX, JUPYTER, PYTHON INFO
 
 ## Directions
 
@@ -52,13 +48,32 @@ In this lab, you will be reworking labs 1 and 2 using Jupyter Notebooks instead 
 2. Once located drag this file into your Jupyter Notebooks home directory
 3. Now you need to grab your Hardware Handoff (HWH) file for your project. This file is used to tell PYNQ specifics about your hardware design like what IPs are being used. This file should be located at `[project directory]/[project name].gen/sources_1/bd/[project name]/hw_handoff/` and have the file ending .hwh.
 4. Once located drag this file into your Jupyter Notebooks home directory as well.
-5. Now that you have all the necessary hardware files to configure your FPGA you need a way to implement them on the board. Navigate to the top of the home dashboard in Jupyter and hit the blue pluss sign. Add a new Python3 notebook and rename it to "Lab4.ipynb".
+5. Now that you have all the necessary hardware files to configure your FPGA you need a way to implement them on the board. Navigate to the top of the home dashboard in Jupyter and hit the blue pluss sign. Add a new Python3 notebook and rename it to "Lab4_Init.ipynb".
 6. In this new notebook you are able to write code and run it in chunks. Click in the open box in the text editor and paste the code provided below.
    ```python
         from pynq import Overlay
         overlay = Overlay("[bitstream file name].bit")
     ```
-7. This simple code sniped is all that is needed to implement your hardware design. Select your code snipped by clicken on the brackets next to it and hit the run button located at the top of the text editor. If you get no error messages you have successfully loaded your hardware design. 
+7. This simple code snippet is all that is needed to implement your hardware design. Select your code snipped by clicken on the brackets next to it and hit the run button located at the top of the text editor. If you get no error messages you have successfully loaded your hardware design.
+
+### Running your first application
+1. Since the image you loaded onto your FPGA on the micro sd card contained a linux implementation you are now able to use a linux command line to compile and run programs on the FPGA. To do this first create a new text file in the home directory named 'Lab4.cpp'.
+2. In this file paste and finish the following code:
+    ```c
+     #include <iostream>
+        
+     int main(void) {
+       // Print "Hello Zynq!" to the console.
+            
+       return 0;
+     }
+    ```
+3. Now add a new terminal in your notebook. You can now interface with the FPGA using a linux command line. Lucky for us this linux build comes with the g++ compiler pre-installed so all we need to do now is run the command `g++ Lab4.cpp`. You might need to navigate to the Jupyter Notebook directory if you aren't already there. This directory is located at `/home/xilinx/jupyter_notebooks`.
+4. Once our project is done compiling run the command `./a.out`. You should see the output in the terminal "Hello Zynq!".
+5. Congratulations! You've officially run your first program on your FPGA using Jupyter Notebooks.
+
+### Running Your Matrix Multiplication App
+1. 
 
 
 {: .new-title }
