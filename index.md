@@ -64,12 +64,12 @@ In this lab, you will be reworking labs 1 and 2 using Jupyter notebooks instead 
 
 ### Running Your First Application
 1. Since the image you loaded onto your FPGA on the micro sd card contained a linux implementation you are now able to use a linux command line to compile and run programs on the FPGA. To do this first create a new text file in the home directory named 'Lab4.cpp'.
-2. In this file paste and finish the following code:
+2. In this file paste the following code:
     ```c
      #include <iostream>
         
      int main(void) {
-       // Print "Hello Zynq!" to the console.
+       std::cout << "Hello Zynq!" << std::endl;
             
        return 0;
      }
@@ -137,7 +137,7 @@ In this lab, you will be reworking labs 1 and 2 using Jupyter notebooks instead 
         
         c = clock() - c;
         
-        printf("Elapsed time for tiled: %f seconds\n", ((float)c) / CLOCKS_PER_SEC);
+        printf("Elapsed time: %f seconds\n", ((float)c) / CLOCKS_PER_SEC);
 
         free(A);
         free(B);
