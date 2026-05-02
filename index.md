@@ -8,7 +8,7 @@ title: Lab 4
 
 ## Description
 
-In this lab, you will be reworking labs 1 and 2 using Jupyter notebooks instead of Vitis. Jupyter botebooks is an interactive computing environment that enables users to edit and run code through the use of notebooks. The code within these notebooks can be run in chunks for easy debugging, with the outputs readily available to you. Jupyter notebooks can be used for many things other than coding such as creating plots, interactive widgets, etc. Connection to your AMD FPGA through Jupyter notebooks provides a more abstracted interface to allow users with less hardware background to program on an FPGA. In this lab you will learn to use this powerful environment to interface with your AMD FPGA from hardware intialization to running your matrix multiply application on the implemented microprocessor. 
+In this lab, you will be reworking labs 1 and 2 using Jupyter notebooks instead of Vitis. Jupyter notebooks is an interactive computing environment that enables users to edit and run code through the use of notebooks. The code within these notebooks can be run in chunks for easy debugging, with the outputs readily available to you. Jupyter notebooks can be used for many things other than coding such as creating plots, interactive widgets, etc. Connection to your AMD FPGA through Jupyter notebooks provides a more abstracted interface to allow users with less hardware background to program on an FPGA. In this lab you will learn to use this powerful environment to interface with your AMD FPGA from hardware intialization to running your matrix multiply application on the implemented microprocessor. 
 
 ## Lab Objectives
 
@@ -30,12 +30,12 @@ In this lab, you will be reworking labs 1 and 2 using Jupyter notebooks instead 
 ### Flashing Your FPGA Board with AMD PYNQ
 1. Navigate to the URL: [https://www.pynq.io/boards.html](https://www.pynq.io/boards.html)
 2. Retrieve your micro sd card and ensure it is at least 16 GB.
-3. Download the corresponding image from the website. The image should be for the AUP-ZU3 board. For the specific version there should be a sticker near the processors cooler noting whether it is the 8 GB model or 4 GB model.
+3. Download the corresponding image from the website. The image should be for the AUP-ZU3 board. For the specific version there should be a sticker near the center of your FPGA board noting whether it is the 8 GB model or 4 GB model.
 4. Once downloaded unzip the folder.
 5. Insert your micro sd card into your sd card reader connected to the computer. Ensure that the sd card is empty.
 6. Navigate to your desired sd card flashing program of choice, for a free option you can use [Balena Etcher](https://etcher.balena.io/). Choose the file within the unzipped folder as your image and flash it to your sd card.
 7. Once flashing is finished, connect your FPGA to power using one of the provided USB-C cables. With the other connect it to the DRP I USB 3.0 port and then to your computer, this cable will provide a network over USB-C to communicate from Jupyter notebooks to your FPGA. Ensure that the power switch is switched to OFF and the boot switch is on SD mode.
-8. Insert the sd card containing the PYNQ image into the FPGA and power on the board with the power switch.
+8. Insert the sd card containing the PYNQ image into the FPGA board's reader and power on the board with the power switch.
 9. At this point the board will go through a process to boot from the image on the sd card. The FPGA will go through a cycle of LEDs blinking.
     1. The PS LED1 should be blinking in a heart beat pattern.
     2. After ~30 seconds the DONE LED located near the USB 3.0 ports should be lit up solid green. Additionally the white LEDs located near the dip switches at the bottom of the board should light up.
@@ -43,10 +43,10 @@ In this lab, you will be reworking labs 1 and 2 using Jupyter notebooks instead 
 
 ### Accessing Jupyter notebooks
 1. Now that your FPGA board is booted up and running PYNQ you can navigate to [http://192.168.3.1/lab](http://192.168.3.1/lab) to open Jupyter notebooks.
-2. You shold be prompted for a password if everything is connected correctly. The password is "xilinx".
+2. You should be prompted for a password if everything is connected correctly. The password is "xilinx".
 3. You should now be greeted with the homepage of Jupyter. You can take some time and read through the different beginner resource folders located in the home directory. Once ready you can move on to the next step.
 
-### Implementing Your Hardware Design Through Jupyter notebooks
+### Implementing Your Hardware Design Through Jupyter Notebooks
 
 {: .hint-title}
 > - **PYNQ Overlay:** An overlay in the PYNQ framework is just another way of saying bitstream. When you are defining your overlay you are simply telling PYNQ what file needs to be used to program your FPGA with your hardware design.
@@ -61,7 +61,7 @@ In this lab, you will be reworking labs 1 and 2 using Jupyter notebooks instead 
         from pynq import Overlay
         overlay = Overlay("[bitstream file name].bit")
     ```
-7. This simple code snippet is all that is needed to implement your hardware design. Select your code snipped by clicking on the brackets next to it and hit the run button located at the top of the text editor. If you get no error messages you have successfully loaded your hardware design.
+7. This simple code snippet is all that is needed to implement your hardware design. Select your code snippet by clicking on the brackets next to it and hit the run button located at the top of the text editor. If you get no error messages you have successfully loaded your hardware design.
 
 ### Running Your First Application
 1. Since the image you loaded onto your FPGA on the micro sd card contained a linux implementation you are now able to use a linux command line to compile and run programs on the FPGA. To do this first create a new text file in the home directory named 'Lab4.cpp'.
@@ -210,4 +210,4 @@ In this lab, you will be reworking labs 1 and 2 using Jupyter notebooks instead 
 
 If you encounter any issues during this lab, here are some common troubleshooting steps:
 1. Empty out your SD card and re-flash it.
-2. If Jupyter Notebooks can't connect to the FPGA it might not be connected to your computer. You can connect it either via USB-C to USB-C cable using the DRP 1 port or via wifi adapter on the same port. 
+2. If Jupyter Notebooks can't connect to the FPGA it might not be connected to your computer. You can connect it either via a USB-C to USB-C cable using the DRP 1 port or via a wifi adapter on the same port. 
